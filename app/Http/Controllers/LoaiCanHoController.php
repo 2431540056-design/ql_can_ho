@@ -12,8 +12,8 @@ class LoaiCanHoController extends Controller
      */
     public function index()
     {
-    $data = LoaiCanHo::all();
-    return view('admin.loai_can_ho.index', compact('data'));
+        $data = \App\Models\LoaiCanHo::all();
+        return view('admin.loai_can_ho.index', compact('data'));
     }
 
     /**
