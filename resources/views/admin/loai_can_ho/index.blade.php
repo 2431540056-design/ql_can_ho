@@ -1,3 +1,7 @@
+@extends('admin.layout')
+
+@section('content')
+
 <h2>Danh sách loại căn hộ</h2>
 
 <a href="{{ route('loai-can-ho.create') }}">Thêm mới</a>
@@ -37,3 +41,4 @@
     </tr>
     @endforeach
 </table>
+@endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CanHo;
+use App\Models\LoaiCanHo;
 
 class CanHoController extends Controller
 {
@@ -21,7 +22,8 @@ class CanHoController extends Controller
      */
     public function create()
     {
-        //
+        $loaiCanHo = LoaiCanHo::all();
+        return view('admin.can_ho.create', compact('loaiCanHo'));
     }
 
     /**
@@ -43,24 +45,34 @@ class CanHoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $canHo = CanHo::findOrFail($id);
+        $loaiCanHo = LoaiCanHo::all();
+
+        return view('admin.can_ho.edit', compact('canHo','loaiCanHo'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $canHo = CanHo::findOrFail($id);
+
+        $canHo->update($request->all());
+
+        return redirect()->route('can-ho.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $canHo = CanHo::findOrFail($id);
+        $canHo->delete();
+
+        return redirect()->route('can-ho.index');
     }
 }
