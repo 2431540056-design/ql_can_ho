@@ -22,15 +22,19 @@ Route::get('/', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Login
+| Authentication
 |--------------------------------------------------------------------------
 */
 
-Route::get('/login', [AuthController::class,'formLogin']);
+Route::get('/login',[AuthController::class,'formLogin']);
 
-Route::post('/login', [AuthController::class,'login']);
+Route::post('/login',[AuthController::class,'login']);
 
-Route::get('/logout', [AuthController::class,'logout']);
+Route::get('/logout',[AuthController::class,'logout']);
+
+Route::get('/register',[AuthController::class,'formRegister']);
+
+Route::post('/register',[AuthController::class,'register']);
 
 
 
@@ -40,8 +44,12 @@ Route::get('/logout', [AuthController::class,'logout']);
 |--------------------------------------------------------------------------
 */
 
-Route::get('/home', function () {
-    return view('home');
+Route::middleware(['auth'])->group(function(){
+
+    Route::get('/home',function(){
+        return view('home');
+    });
+
 });
 
 
@@ -52,14 +60,14 @@ Route::get('/home', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth','role:admin'])->group(function () {
+Route::middleware(['auth','role:admin'])->group(function(){
 
-    Route::get('/admin', function () {
+    Route::get('/admin',function(){
         return view('admin.dashboard');
     });
 
-    Route::resource('can-ho', CanHoController::class);
+    Route::resource('can-ho',CanHoController::class);
 
-    Route::resource('loai-can-ho', LoaiCanHoController::class);
+    Route::resource('loai-can-ho',LoaiCanHoController::class);
 
 });
