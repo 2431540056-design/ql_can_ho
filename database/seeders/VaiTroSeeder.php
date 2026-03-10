@@ -11,7 +11,6 @@ class VaiTroSeeder extends Seeder
     {
         DB::table('vai_tro')->insert([
             ['ten_vai_tro' => 'admin'],
-            ['ten_vai_tro' => 'ban_quan_ly'],
             ['ten_vai_tro' => 'cu_dan'],
         ]);
     }
