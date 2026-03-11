@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CanHoController;
 use App\Http\Controllers\LoaiCanHoController;
-
-
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CuDanController;
+use App\Http\Controllers\HopDongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,4 +71,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::resource('loai-can-ho',LoaiCanHoController::class);
 
+    Route::resource('cu-dan',CuDanController::class);
+
+    Route::resource('hop-dong',HopDongController::class);
 });
