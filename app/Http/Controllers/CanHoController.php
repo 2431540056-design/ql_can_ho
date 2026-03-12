@@ -2,77 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CanHo;
 use App\Models\LoaiCanHo;
+use Illuminate\Http\Request;
 
 class CanHoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        $data = CanHo::with('loaiCanHo')->get();
-        return view('admin.can_ho.index', compact('data'));
+        $canHos = CanHo::with('loaiCanHo')->get();
+
+        return view('admin.can_ho.index', compact('canHos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $loaiCanHo = LoaiCanHo::all();
-        return view('admin.can_ho.create', compact('loaiCanHo'));
+        $loaiCanHos = LoaiCanHo::all();
+
+        return view('admin.can_ho.create',compact('loaiCanHos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        CanHo::create($request->all());
+
+        return redirect('/can-ho');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $canHo = CanHo::findOrFail($id);
-        $loaiCanHo = LoaiCanHo::all();
 
-        return view('admin.can_ho.edit', compact('canHo','loaiCanHo'));
+        $loaiCanHos = LoaiCanHo::all();
+
+        return view('admin.can_ho.edit',compact('canHo','loaiCanHos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         $canHo = CanHo::findOrFail($id);
 
         $canHo->update($request->all());
 
-        return redirect()->route('can-ho.index');
+        return redirect('/can-ho');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        $canHo = CanHo::findOrFail($id);
-        $canHo->delete();
+        CanHo::destroy($id);
 
-        return redirect()->route('can-ho.index');
+        return redirect('/can-ho');
     }
+
 }

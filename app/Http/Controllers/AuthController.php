@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -14,27 +16,18 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
+{
+    $user = User::where('email', $request->email)->first();
+
+    if($user && Hash::check($request->password, $user->mat_khau))
     {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        session(['user' => $user]);
 
-        if(Auth::attempt($credentials)){
-
-            $user = Auth::user();
-
-            if($user->ma_vai_tro == 1){
-                return redirect('/admin');
-            }
-
-            if($user->ma_vai_tro == 2){
-                return redirect('/home');
-            }
-        }
+        return redirect('/admin');
+    }
 
     return back()->with('error','Sai email hoặc mật khẩu');
-    }
+}
 
     public function logout()
     {

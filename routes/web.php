@@ -7,9 +7,13 @@ use App\Http\Controllers\CanHoController;
 use App\Http\Controllers\LoaiCanHoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CuDanController;
-use App\Http\Controllers\HopDongController;
 use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\ThanhToanController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HopDongController;
+use App\Http\Controllers\PhanAnhController;
+use App\Http\Controllers\ThongBaoController;
+
 /*
 |--------------------------------------------------------------------------
 | Trang chủ
@@ -74,8 +78,16 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::resource('cu-dan',CuDanController::class);
 
-    Route::resource('hop-dong',HopDongController::class);
+    Route::resource('hop-dong', HopDongController::class);
 
     Route::resource('hoa-don',HoaDonController::class);
+
     Route::resource('thanh-toan',ThanhToanController::class);
+
+    Route::resource('nguoi-dung', UserController::class);
+
+    Route::resource('phan-anh', PhanAnhController::class);
+
+    Route::resource('thong-bao',ThongBaoController::class);
+    Route::put('/phan-anh/{id}/xu-ly',[PhanAnhController::class,'xuLy']);
 });

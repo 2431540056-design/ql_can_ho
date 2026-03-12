@@ -2,10 +2,10 @@
 
 @section('content')
 
-<h2 class="mb-3">Danh sách cư dân</h2>
+<h2 class="mb-3">Quản lý tài khoản</h2>
 
-<a href="/cu-dan/create" class="btn btn-primary mb-3">
-Thêm cư dân
+<a href="/nguoi-dung/create" class="btn btn-primary mb-3">
+Thêm tài khoản
 </a>
 
 <div class="card">
@@ -17,11 +17,9 @@ Thêm cư dân
 
 <tr>
 <th>ID</th>
-<th>Tên cư dân</th>
-<th>Điện thoại</th>
+<th>Họ tên</th>
 <th>Email</th>
-<th>CCCD</th>
-<th>Căn hộ</th>
+<th>Vai trò</th>
 <th width="150">Hành động</th>
 </tr>
 
@@ -29,34 +27,38 @@ Thêm cư dân
 
 <tbody>
 
-@foreach($cuDans as $cuDan)
+@foreach($users as $user)
 
 <tr>
 
-<td>{{ $cuDan->ma_cu_dan }}</td>
+<td>{{ $user->ma_nguoi_dung }}</td>
 
-<td>{{ $cuDan->nguoiDung->ho_ten }}</td>
+<td>{{ $user->ho_ten }}</td>
 
-<td>{{ $cuDan->so_dien_thoai }}</td>
-
-<td>{{ $cuDan->nguoiDung->email }}</td>
-
-<td>{{ $cuDan->cccd }}</td>
+<td>{{ $user->email }}</td>
 
 <td>
 
-{{ $cuDan->canHo->so_can_ho ?? '' }}
+@if($user->vaiTro->ten_vai_tro == 'admin')
+
+<span class="badge bg-danger">Admin</span>
+
+@else
+
+<span class="badge bg-success">Cư dân</span>
+
+@endif
 
 </td>
 
 <td>
 
-<a href="/cu-dan/{{ $cuDan->ma_cu_dan }}/edit"
+<a href="/nguoi-dung/{{ $user->ma_nguoi_dung }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>
 
-<form action="/cu-dan/{{ $cuDan->ma_cu_dan }}"
+<form action="/nguoi-dung/{{ $user->ma_nguoi_dung }}"
 method="POST"
 style="display:inline">
 

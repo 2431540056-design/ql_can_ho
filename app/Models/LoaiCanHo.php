@@ -27,5 +27,5 @@ class LoaiCanHo extends Model
 public function canHos()
 {
     return $this->hasMany(CanHo::class, 'ma_loai_can_ho', 'ma_loai_can_ho');
-}    
+}
 }

@@ -1,41 +1,103 @@
-@extends('admin.layout')
+@extends('layouts.admin')
 
 @section('content')
 
-<h2>Danh sách căn hộ</h2>
+<h2 class="mb-3">Danh sách căn hộ</h2>
 
-<a href="{{ route('can-ho.create') }}">Thêm mới</a>
+<a href="/can-ho/create" class="btn btn-primary mb-3">
+Thêm căn hộ
+</a>
 
-<table border="1" cellpadding="10">
+<div class="card">
+
+<div class="card-body">
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-light">
+
 <tr>
-    <th>Mã</th>
-    <th>Số căn hộ</th>
-    <th>Tầng</th>
-    <th>Diện tích</th>
-    <th>Trạng thái</th>
-    <th>Loại căn hộ</th>
-    <th>Hành động</th>
+<th>ID</th>
+<th>Số căn hộ</th>
+<th>Tầng</th>
+<th>Diện tích</th>
+<th>Trạng thái</th>
+<th>Loại căn hộ</th>
+<th width="150">Hành động</th>
 </tr>
 
-@foreach($data as $item)
+</thead>
+
+<tbody>
+
+@foreach($canHos as $canHo)
+
 <tr>
-    <td>{{ $item->ma_can_ho }}</td>
-    <td>{{ $item->so_can_ho }}</td>
-    <td>{{ $item->tang }}</td>
-    <td>{{ $item->dien_tich }}</td>
-    <td>{{ $item->trang_thai }}</td>
-    <td>{{ $item->loaiCanHo->ten_loai }}</td>
 
-    <td>
-        <a href="{{ route('can-ho.edit',$item->ma_can_ho) }}">Sửa</a>
+<td>{{ $canHo->ma_can_ho }}</td>
 
-        <form action="{{ route('can-ho.destroy',$item->ma_can_ho) }}" method="POST" style="display:inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Xóa</button>
-        </form>
-    </td>
+<td>{{ $canHo->so_can_ho }}</td>
+
+<td>{{ $canHo->tang }}</td>
+
+<td>{{ $canHo->dien_tich }} m²</td>
+
+<td>
+
+@if($canHo->trang_thai == 'trong')
+
+<span class="badge bg-success">
+Trống
+</span>
+
+@else
+
+<span class="badge bg-danger">
+Đang ở
+</span>
+
+@endif
+
+</td>
+
+<td>
+
+{{ $canHo->loaiCanHo->ten_loai ?? '' }}
+
+</td>
+
+<td>
+
+<a href="/can-ho/{{ $canHo->ma_can_ho }}/edit"
+class="btn btn-warning btn-sm">
+Sửa
+</a>
+
+<form action="/can-ho/{{ $canHo->ma_can_ho }}"
+method="POST"
+style="display:inline">
+
+@csrf
+@method('DELETE')
+
+<button class="btn btn-danger btn-sm">
+Xóa
+</button>
+
+</form>
+
+</td>
+
 </tr>
+
 @endforeach
+
+</tbody>
+
 </table>
+
+</div>
+
+</div>
+
 @endsection

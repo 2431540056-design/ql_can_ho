@@ -1,35 +1,78 @@
-@extends('admin.layout')
+@extends('layouts.admin')
 
 @section('content')
 
 <h2>Thêm căn hộ</h2>
 
-<form action="{{ route('can-ho.store') }}" method="POST">
-    @csrf
+<form method="POST" action="/can-ho">
 
-    <p>Số căn hộ</p>
-    <input type="text" name="so_can_ho">
+@csrf
 
-    <p>Tầng</p>
-    <input type="number" name="tang">
+<div class="mb-3">
 
-    <p>Diện tích</p>
-    <input type="number" name="dien_tich">
+<label>Số căn hộ</label>
 
-    <p>Trạng thái</p>
-    <input type="text" name="trang_thai">
+<input type="text"
+name="so_can_ho"
+class="form-control">
 
-    <p>Loại căn hộ</p>
-    <select name="ma_loai_can_ho">
-        @foreach($loaiCanHo as $item)
-            <option value="{{ $item->ma_loai_can_ho }}">
-                {{ $item->ten_loai }}
-            </option>
-        @endforeach
-    </select>
+</div>
 
-    <br><br>
+<div class="mb-3">
 
-    <button type="submit">Lưu</button>
+<label>Tầng</label>
+
+<input type="number"
+name="tang"
+class="form-control">
+
+</div>
+
+<div class="mb-3">
+
+<label>Diện tích</label>
+
+<input type="number"
+name="dien_tich"
+class="form-control">
+
+</div>
+
+<div class="mb-3">
+
+<label>Trạng thái</label>
+
+<select name="trang_thai" class="form-control">
+
+<option value="trong">Trống</option>
+<option value="dang_o">Đang ở</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Loại căn hộ</label>
+
+<select name="ma_loai_can_ho" class="form-control">
+
+@foreach($loaiCanHos as $loai)
+
+<option value="{{ $loai->ma_loai_can_ho }}">
+{{ $loai->ten_loai }}
+</option>
+
+@endforeach
+
+</select>
+
+</div>
+
+<button class="btn btn-success">
+Lưu
+</button>
+
 </form>
+
 @endsection

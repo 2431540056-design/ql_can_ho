@@ -18,7 +18,7 @@ class NguoiDungSeeder extends Seeder
                 'ma_vai_tro' => 1,
             ],
             [
-                'ho_ten' => 'Phạm Nguyên y',
+                'ho_ten' => 'Phạm Nguyên Y',
                 'email' => 'nguyeny@gmail.com',
                 'mat_khau' => Hash::make('yyy'),
                 'ma_vai_tro' => 2, 

@@ -1,44 +1,52 @@
-@extends('admin.layout')
+@extends('layouts.admin')
 
 @section('content')
 
 <h2>Sửa căn hộ</h2>
 
-<form action="{{ route('can-ho.update',$canHo->ma_can_ho) }}" method="POST">
+<form method="POST"
+action="/can-ho/{{ $canHo->ma_can_ho }}">
+
 @csrf
 @method('PUT')
 
-<p>Số căn hộ</p>
-<input type="text" name="so_can_ho" value="{{ $canHo->so_can_ho }}">
+<div class="mb-3">
 
-<p>Tầng</p>
-<input type="number" name="tang" value="{{ $canHo->tang }}">
+<label>Số căn hộ</label>
 
-<p>Diện tích</p>
-<input type="number" name="dien_tich" value="{{ $canHo->dien_tich }}">
+<input type="text"
+name="so_can_ho"
+value="{{ $canHo->so_can_ho }}"
+class="form-control">
 
-<p>Trạng thái</p>
-<input type="text" name="trang_thai" value="{{ $canHo->trang_thai }}">
+</div>
 
-<p>Loại căn hộ</p>
-<select name="ma_loai_can_ho">
+<div class="mb-3">
 
-@foreach($loaiCanHo as $item)
+<label>Tầng</label>
 
-<option value="{{ $item->ma_loai_can_ho }}"
-@if($item->ma_loai_can_ho == $canHo->ma_loai_can_ho) selected @endif>
+<input type="number"
+name="tang"
+value="{{ $canHo->tang }}"
+class="form-control">
 
-{{ $item->ten_loai }}
+</div>
 
-</option>
+<div class="mb-3">
 
-@endforeach
+<label>Diện tích</label>
 
-</select>
+<input type="number"
+name="dien_tich"
+value="{{ $canHo->dien_tich }}"
+class="form-control">
 
-<br><br>
+</div>
 
-<button type="submit">Cập nhật</button>
+<button class="btn btn-primary">
+Cập nhật
+</button>
 
 </form>
+
 @endsection

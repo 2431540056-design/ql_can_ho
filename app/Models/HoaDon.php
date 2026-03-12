@@ -23,4 +23,9 @@ class HoaDon extends Model
     {
         return $this->belongsTo(CanHo::class,'ma_can_ho');
     }
+
+    public function thanhToans()
+    {
+        return $this->hasMany(ThanhToan::class,'ma_hoa_don');
+    }
 }

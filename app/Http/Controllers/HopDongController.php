@@ -3,62 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HopDong;
+use App\Models\CuDan;
+use App\Models\CanHo;
 
 class HopDongController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $hopDongs = HopDong::with(['cuDan.nguoiDung','canHo'])->get();
+
+        return view('admin.hop_dong.index', compact('hopDongs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $cuDans = CuDan::with('nguoiDung')->get();
+        $canHos = CanHo::all();
+
+        return view('admin.hop_dong.create', compact('cuDans','canHos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        HopDong::create($request->all());
+
+        return redirect('/hop-dong')->with('success','Thêm hợp đồng thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $hopDong = HopDong::findOrFail($id);
+        $cuDans = CuDan::with('nguoiDung')->get();
+        $canHos = CanHo::all();
+
+        return view('admin.hop_dong.edit', compact('hopDong','cuDans','canHos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $hopDong = HopDong::findOrFail($id);
+        $hopDong->update($request->all());
+
+        return redirect('/hop-dong')->with('success','Cập nhật thành công');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        HopDong::destroy($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect('/hop-dong')->with('success','Xóa thành công');
     }
 }

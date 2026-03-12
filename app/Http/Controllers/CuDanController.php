@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CuDan;
+use App\Models\CanHo;
+use Illuminate\Http\Request;
 
 class CuDanController extends Controller
 {
 
     public function index()
     {
-        $cuDans = CuDan::all();
+        $cuDans = CuDan::with(['nguoiDung','canHo'])->get();
 
         return view('admin.cu_dan.index', compact('cuDans'));
     }
 
-
     public function create()
     {
-        return view('admin.cu_dan.create');
-    }
+        $canHos = CanHo::all();
 
+        return view('admin.cu_dan.create',compact('canHos'));
+    }
 
     public function store(Request $request)
     {
@@ -29,16 +30,16 @@ class CuDanController extends Controller
         return redirect('/cu-dan');
     }
 
-
     public function edit($id)
     {
         $cuDan = CuDan::findOrFail($id);
 
-        return view('admin.cu_dan.edit', compact('cuDan'));
+        $canHos = CanHo::all();
+
+        return view('admin.cu_dan.edit',compact('cuDan','canHos'));
     }
 
-
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         $cuDan = CuDan::findOrFail($id);
 
@@ -47,11 +48,11 @@ class CuDanController extends Controller
         return redirect('/cu-dan');
     }
 
-
     public function destroy($id)
     {
         CuDan::destroy($id);
 
         return redirect('/cu-dan');
     }
+
 }

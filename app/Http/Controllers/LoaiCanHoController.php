@@ -7,69 +7,47 @@ use Illuminate\Http\Request;
 
 class LoaiCanHoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        $data = \App\Models\LoaiCanHo::all();
-        return view('admin.loai_can_ho.index', compact('data'));
+        $loaiCanHos = LoaiCanHo::all();
+
+        return view('admin.loai_can_ho.index', compact('loaiCanHos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.loai_can_ho.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        LoaiCanHo::create($request->all());
+
+        return redirect('/loai-can-ho');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(LoaiCanHo $loaiCanHo)
+    public function edit($id)
     {
-        //
+        $loaiCanHo = LoaiCanHo::findOrFail($id);
+
+        return view('admin.loai_can_ho.edit',compact('loaiCanHo'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($ma_loai_can_ho)
+    public function update(Request $request,$id)
     {
-        $loai = LoaiCanHo::findOrFail($ma_loai_can_ho);
-        return view('admin.loai_can_ho.edit', compact('loai'));
+        $loaiCanHo = LoaiCanHo::findOrFail($id);
+
+        $loaiCanHo->update($request->all());
+
+        return redirect('/loai-can-ho');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $ma_loai_can_ho)
+    public function destroy($id)
     {
-        $loai = LoaiCanHo::findOrFail($ma_loai_can_ho);
-        $loai->update($request->all());
+        LoaiCanHo::destroy($id);
 
-        return redirect()->route('loai-can-ho.index')
-            ->with('success', 'Cập nhật thành công!');
+        return redirect('/loai-can-ho');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($ma_loai_can_ho)
-    {
-        $loai = LoaiCanHo::findOrFail($ma_loai_can_ho);
-        $loai->delete();
-
-        return redirect()->route('loai-can-ho.index')
-            ->with('success', 'Xóa thành công!');
-    }
 }

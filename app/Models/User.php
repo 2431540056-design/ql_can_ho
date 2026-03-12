@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(VaiTro::class,'ma_vai_tro','ma_vai_tro');
     }
+
+    public function cuDan()
+{
+    return $this->hasOne(CuDan::class,'ma_nguoi_dung','ma_nguoi_dung');
+}
 }

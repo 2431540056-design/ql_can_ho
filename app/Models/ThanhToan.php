@@ -6,20 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class ThanhToan extends Model
 {
+    protected $table = 'thanh_toan';
 
-protected $table='thanh_toan';
-protected $primaryKey='ma_thanh_toan';
+    protected $primaryKey = 'ma_thanh_toan';
 
-protected $fillable=[
-'ma_hoa_don',
-'so_tien',
-'ngay_thanh_toan',
-'phuong_thuc'
-];
+    public $timestamps = false;
 
-public function hoaDon()
-{
-return $this->belongsTo(HoaDon::class,'ma_hoa_don');
-}
+    protected $fillable = [
+        'ma_hoa_don',
+        'so_tien',
+        'phuong_thuc',
+        'ngay_thanh_toan'
+    ];
 
+    public function hoaDon()
+    {
+        return $this->belongsTo(HoaDon::class,'ma_hoa_don','ma_hoa_don');
+    }
 }

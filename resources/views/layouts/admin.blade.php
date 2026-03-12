@@ -1,124 +1,113 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-
 <meta charset="UTF-8">
-<title>Admin - BabyCute Apartment</title>
+<title>BabyCute Admin</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <style>
 
 body{
+margin:0;
+font-family:Segoe UI, Arial;
+font-size:14px;
 background:#f4f6f9;
 }
 
+/* wrapper layout */
+.wrapper{
+display:flex;
+min-height:100vh;
+}
+
+/* sidebar */
 .sidebar{
-height:100vh;
 width:240px;
-position:fixed;
-background:#1f2d3d;
+background:#243447;
 color:white;
+padding-top:15px;
+flex-shrink:0;
+}
+
+.sidebar h3{
+font-size:18px;
+padding:10px 20px;
+margin-bottom:10px;
+}
+
+.sidebar h4{
+font-size:13px;
+padding:10px 20px;
+color:#9ca3af;
+text-transform:uppercase;
 }
 
 .sidebar a{
 display:block;
-padding:12px;
-color:#c2c7d0;
+padding:10px 20px;
+font-size:14px;
+color:#e5e7eb;
 text-decoration:none;
 }
 
 .sidebar a:hover{
 background:#34495e;
+}
+
+.sidebar a.active{
+background:#1abc9c;
 color:white;
 }
 
+/* content */
 .content{
-margin-left:240px;
+flex:1;
 padding:25px;
 }
 
-.brand{
-font-size:20px;
+/* dashboard cards */
+.card h5{
+font-size:14px;
+}
+
+.card h3{
+font-size:26px;
 font-weight:bold;
-padding:15px;
 }
 
 </style>
-
 </head>
 
 <body>
 
+<div class="wrapper">
+
 <div class="sidebar">
 
-<div class="brand">
-<i class="fa fa-building"></i>
-BabyCute Admin
-</div>
+<h3>BabyCute Admin</h3>
 
-<hr>
+<a href="/admin">Dashboard</a>
 
-<a href="/admin">
-<i class="fa fa-chart-line"></i>
-Dashboard
-</a>
+<h4>Quản lý căn hộ</h4>
 
-<p class="ms-3 mt-3">Quản lý căn hộ</p>
+<a href="/nguoi-dung">Quản lý tài khoản</a>
+<a href="/can-ho">Căn hộ</a>
+<a href="/loai-can-ho">Loại căn hộ</a>
+<a href="/cu-dan">Cư dân</a>
+<a href="/hop-dong">Hợp đồng</a>
 
-<a href="/can-ho">
-<i class="fa fa-house"></i>
-Căn hộ
-</a>
+<h4>Tài chính</h4>
 
-<a href="/loai-can-ho">
-<i class="fa fa-layer-group"></i>
-Loại căn hộ
-</a>
+<a href="/hoa-don">Hóa đơn</a>
+<a href="/thanh-toan">Thanh toán</a>
 
-<a href="/cu-dan">
-<i class="fa fa-users"></i>
-Cư dân
-</a>
+<h4>Dịch vụ</h4>
 
-<a href="/hop-dong">
-<i class="fa fa-file-contract"></i>
-Hợp đồng
-</a>
+<a href="/phan-anh">Phản ánh cư dân</a>
+<a href="/thong-bao">Thông báo</a>
 
-<hr>
-
-<p class="ms-3">Tài chính</p>
-
-<a href="/hoa-don">
-<i class="fa fa-file-invoice"></i>
-Hóa đơn
-</a>
-
-<a href="/thanh-toan">
-<i class="fa fa-money-bill"></i>
-Thanh toán
-</a>
-
-<hr>
-
-<a href="/phan-anh">
-<i class="fa fa-triangle-exclamation"></i>
-Phản ánh cư dân
-</a>
-
-<a href="/thong-bao">
-<i class="fa fa-bell"></i>
-Thông báo
-</a>
-
-<hr>
-
-<a href="/logout" class="text-danger">
-<i class="fa fa-right-from-bracket"></i>
+<a href="/logout" style="color:#ff4d4f;margin-top:20px;">
 Đăng xuất
 </a>
 
@@ -126,7 +115,38 @@ Thông báo
 
 <div class="content">
 
+<div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
+
+<div style="position:relative; font-size:22px;">
+
+<a href="/phan-anh" style="text-decoration:none">
+
+<i class="bi bi-bell"></i>
+
+<span style="
+position:absolute;
+top:-8px;
+right:-10px;
+background:red;
+color:white;
+font-size:12px;
+padding:2px 6px;
+border-radius:50%;
+">
+
+{{ \App\Models\PhanAnh::where('trang_thai','moi')->count() }}
+
+</span>
+
+</a>
+
+</div>
+
+</div>
+
 @yield('content')
+
+</div>
 
 </div>
 
