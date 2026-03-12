@@ -3,24 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\CanHo;
-use App\Models\User;
+use App\Models\HoaDon;
+use App\Models\CuDan;
+use App\Models\PhanAnh;
 
 class DashboardController extends Controller
 {
-
     public function index()
     {
 
-        $tongCanHo = CanHo::count();
+        $soCanHo = CanHo::count();
 
-        $tongCuDan = User::where('ma_vai_tro',2)->count();
+        $soCuDan = CuDan::count();
 
-        return view('admin.dashboard',compact(
-            'tongCanHo',
-            'tongCuDan'
+        $soHoaDon = HoaDon::count();
+
+        $soPhanAnh = PhanAnh::count();
+
+        return view('admin.dashboard', compact(
+            'soCanHo',
+            'soCuDan',
+            'soHoaDon',
+            'soPhanAnh'
         ));
-
     }
-
 }

@@ -3,9 +3,9 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Admin - Căn hộ BabyCute</title>
+<title>Admin - BabyCute Apartment</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -18,7 +18,7 @@ background:#f4f6f9;
 
 .sidebar{
 height:100vh;
-width:250px;
+width:240px;
 position:fixed;
 background:#1f2d3d;
 color:white;
@@ -26,8 +26,8 @@ color:white;
 
 .sidebar a{
 display:block;
-color:#c2c7d0;
 padding:12px;
+color:#c2c7d0;
 text-decoration:none;
 }
 
@@ -37,14 +37,14 @@ color:white;
 }
 
 .content{
-margin-left:250px;
+margin-left:240px;
 padding:25px;
 }
 
-.sidebar-title{
-padding:15px;
-font-size:18px;
+.brand{
+font-size:20px;
 font-weight:bold;
+padding:15px;
 }
 
 </style>
@@ -55,7 +55,7 @@ font-weight:bold;
 
 <div class="sidebar">
 
-<div class="sidebar-title">
+<div class="brand">
 <i class="fa fa-building"></i>
 BabyCute Admin
 </div>
@@ -67,11 +67,11 @@ BabyCute Admin
 Dashboard
 </a>
 
-<h6 class="mt-3 ms-3">Quản lý căn hộ</h6>
+<p class="ms-3 mt-3">Quản lý căn hộ</p>
 
 <a href="/can-ho">
 <i class="fa fa-house"></i>
-Danh sách căn hộ
+Căn hộ
 </a>
 
 <a href="/loai-can-ho">
@@ -91,10 +91,10 @@ Hợp đồng
 
 <hr>
 
-<h6 class="ms-3">Tài chính</h6>
+<p class="ms-3">Tài chính</p>
 
 <a href="/hoa-don">
-<i class="fa fa-file-invoice-dollar"></i>
+<i class="fa fa-file-invoice"></i>
 Hóa đơn
 </a>
 
@@ -104,8 +104,6 @@ Thanh toán
 </a>
 
 <hr>
-
-<h6 class="ms-3">Dịch vụ</h6>
 
 <a href="/phan-anh">
 <i class="fa fa-triangle-exclamation"></i>
@@ -119,11 +117,6 @@ Thông báo
 
 <hr>
 
-<a href="/bao-cao">
-<i class="fa fa-chart-pie"></i>
-Báo cáo
-</a>
-
 <a href="/logout" class="text-danger">
 <i class="fa fa-right-from-bracket"></i>
 Đăng xuất
@@ -136,8 +129,6 @@ Báo cáo
 @yield('content')
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

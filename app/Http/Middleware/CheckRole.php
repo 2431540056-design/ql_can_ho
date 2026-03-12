@@ -16,7 +16,7 @@ class CheckRole
 
         $user = Auth::user();
 
-        if ($user->vaiTro->ten_vai_tro != $role) {
+        if ($role == 'admin' && $user->ma_vai_tro != 1) {
             abort(403, 'Không có quyền truy cập');
         }
 

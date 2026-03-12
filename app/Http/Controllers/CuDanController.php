@@ -3,67 +3,55 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\CuDan;
 
 class CuDanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
+        $cuDans = CuDan::all();
 
-        $cuDans = User::where('ma_vai_tro',2)->get();
-
-        return view('admin.cu_dan.index',compact('cuDans'));
-
+        return view('admin.cu_dan.index', compact('cuDans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        return view('admin.cu_dan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        CuDan::create($request->all());
+
+        return redirect('/cu-dan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function edit($id)
     {
-        //
+        $cuDan = CuDan::findOrFail($id);
+
+        return view('admin.cu_dan.edit', compact('cuDan'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    public function update(Request $request, $id)
     {
-        //
+        $cuDan = CuDan::findOrFail($id);
+
+        $cuDan->update($request->all());
+
+        return redirect('/cu-dan');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        CuDan::destroy($id);
+
+        return redirect('/cu-dan');
     }
 }

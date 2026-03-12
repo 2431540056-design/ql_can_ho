@@ -8,7 +8,8 @@ use App\Http\Controllers\LoaiCanHoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CuDanController;
 use App\Http\Controllers\HopDongController;
-
+use App\Http\Controllers\HoaDonController;
+use App\Http\Controllers\ThanhToanController;
 /*
 |--------------------------------------------------------------------------
 | Trang chủ
@@ -63,10 +64,10 @@ Route::middleware(['auth'])->group(function(){
 
 Route::middleware(['auth','role:admin'])->group(function(){
 
-    Route::get('/admin',function(){
+    Route::get('/admin',[DashboardController::class,'index']);
+    /*Route::get('/admin',function(){
         return view('admin.dashboard');
-    });
-
+    });*/
     Route::resource('can-ho',CanHoController::class);
 
     Route::resource('loai-can-ho',LoaiCanHoController::class);
@@ -74,4 +75,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::resource('cu-dan',CuDanController::class);
 
     Route::resource('hop-dong',HopDongController::class);
+
+    Route::resource('hoa-don',HoaDonController::class);
+    Route::resource('thanh-toan',ThanhToanController::class);
 });
