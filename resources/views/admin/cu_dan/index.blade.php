@@ -56,9 +56,7 @@ class="btn btn-warning btn-sm">
 Sửa
 </a>
 
-<form action="/cu-dan/{{ $cuDan->ma_cu_dan }}"
-method="POST"
-style="display:inline">
+<form action="{{ url('/admin/cu-dan/'.$cuDan->ma_cu_dan) }}" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa cư dân này không?')" style="display:inline;">
 
 @csrf
 @method('DELETE')
@@ -66,6 +64,8 @@ style="display:inline">
 <button class="btn btn-danger btn-sm">
 Xóa
 </button>
+
+</form>
 
 </form>
 

@@ -96,7 +96,7 @@ font-weight:bold;
 <a href="/admin/loai-can-ho">Loại căn hộ</a>
 <a href="/admin/cu-dan">Cư dân</a>
 <a href="/admin/hop-dong">Hợp đồng</a>
-<a href="/admin/yeu-cau-thue">Yêu cầu thuê</a>
+<a href="/admin/duyet-thue">Duyệt thuê</a>
 
 
 <h4>Tài chính</h4>

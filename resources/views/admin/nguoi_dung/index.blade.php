@@ -58,9 +58,7 @@ class="btn btn-warning btn-sm">
 Sửa
 </a>
 
-<form action="/nguoi-dung/{{ $user->ma_nguoi_dung }}"
-method="POST"
-style="display:inline">
+<form action="{{ url('/admin/nguoi-dung/'.$user->ma_nguoi_dung) }}" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản này không?')" style="display:inline;">
 
 @csrf
 @method('DELETE')

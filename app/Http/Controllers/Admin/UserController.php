@@ -33,7 +33,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect('/nguoi-dung');
+        return redirect('/admin/nguoi-dung');
     }
 
     public function edit($id)
@@ -57,14 +57,14 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect('/nguoi-dung');
+        return redirect('/admin/nguoi-dung');
     }
 
     public function destroy($id)
     {
         User::destroy($id);
 
-        return redirect('/nguoi-dung');
+        return redirect('/admin/nguoi-dung');
     }
 
 }

@@ -4,17 +4,23 @@
 
 <h2 class="mb-3">Danh sách căn hộ</h2>
 
-<a href="/admin/can-ho/create" class="btn btn-primary mb-3">
+<a href="{{ url('/admin/can-ho/create') }}" class="btn btn-primary mb-3">
 Thêm căn hộ
 </a>
 
-<div class="card">
+@if(session('success'))
+<div class="alert alert-success">
+{{ session('success') }}
+</div>
+@endif
+
+<div class="card shadow-sm">
 
 <div class="card-body">
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover align-middle">
 
-<thead class="table-light">
+<thead class="table-light text-center">
 
 <tr>
 <th>ID</th>
@@ -32,7 +38,7 @@ Thêm căn hộ
 
 @foreach($canHos as $canHo)
 
-<tr>
+<tr class="text-center">
 
 <td>{{ $canHo->ma_can_ho }}</td>
 
@@ -60,22 +66,19 @@ Trống
 
 </td>
 
-<td>
-
-{{ $canHo->loaiCanHo->ten_loai ?? '' }}
-
-</td>
+<td>{{ $canHo->loaiCanHo->ten_loai ?? '' }}</td>
 
 <td>
 
-<a href="/admin/can-ho/{{ $canHo->ma_can_ho }}/edit"
+<a href="{{ url('/admin/can-ho/'.$canHo->ma_can_ho.'/edit') }}"
 class="btn btn-warning btn-sm">
 Sửa
 </a>
 
-<form action="/can-ho/{{ $canHo->ma_can_ho }}"
+<form action="{{ url('/admin/can-ho/'.$canHo->ma_can_ho) }}"
 method="POST"
-style="display:inline">
+style="display:inline;"
+onsubmit="return confirm('Bạn có chắc muốn xóa căn hộ này không?')">
 
 @csrf
 @method('DELETE')

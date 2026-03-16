@@ -33,7 +33,7 @@ class ApartmentController extends Controller
     {
         $canho = CanHo::findOrFail($id);
 
-        return view('public.canho.show', compact('canho'));
+        return view('public.can_ho.show', compact('canho'));
     }
 
     public function myApartment()

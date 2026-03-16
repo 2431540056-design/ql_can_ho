@@ -112,10 +112,10 @@ Route::prefix('admin')->middleware(['auth','role:admin'])->group(function(){
 
     Route::put('/phan-anh/{id}/xu-ly',[PhanAnhController::class,'xuLy']);
 
-    Route::resource('yeu-cau-thue',YeuCauThueController::class);
+    Route::get('/duyet-thue',[DuyetThueController::class,'index']);
 
-    Route::get('/admin/yeu-cau-thue',[AdminDuyetThueController::class,'index']);
+    Route::post('/duyet-thue/{id}',[DuyetThueController::class,'duyet']);
 
-    Route::post('/admin/duyet-thue/{id}',[AdminDuyetThueController::class,'duyet']);
+    Route::post('/tu-choi-thue/{id}',[DuyetThueController::class,'tuChoi']);
 
 });

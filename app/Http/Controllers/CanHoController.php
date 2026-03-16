@@ -13,7 +13,7 @@ class CanHoController extends Controller
     {
         $canHos = CanHo::with('loaiCanHo')->get();
 
-        return view('admin.can_ho.index', compact('canHos'));
+        return view('admin.can_ho.index',compact('canHos'));
     }
 
     public function create()
@@ -25,34 +25,44 @@ class CanHoController extends Controller
 
     public function store(Request $request)
     {
+
         CanHo::create($request->all());
 
-        return redirect('/can-ho');
+        return redirect('/admin/can-ho')
+        ->with('success','Thêm căn hộ thành công');
+
     }
 
     public function edit($id)
     {
-        $canHo = CanHo::findOrFail($id);
+    $canHo = CanHo::findOrFail($id);
 
-        $loaiCanHos = LoaiCanHo::all();
+    $loaiCanHos = LoaiCanHo::all();
 
-        return view('admin.can_ho.edit',compact('canHo','loaiCanHos'));
+    return view('admin.can_ho.edit',
+    compact('canHo','loaiCanHos'));
     }
 
     public function update(Request $request,$id)
     {
+
         $canHo = CanHo::findOrFail($id);
 
         $canHo->update($request->all());
 
-        return redirect('/can-ho');
+        return redirect('/admin/can-ho')
+        ->with('success','Cập nhật căn hộ thành công');
+
     }
 
     public function destroy($id)
     {
+
         CanHo::destroy($id);
 
-        return redirect('/can-ho');
+        return redirect('/admin/can-ho')
+        ->with('success','Xóa căn hộ thành công');
+
     }
 
 }

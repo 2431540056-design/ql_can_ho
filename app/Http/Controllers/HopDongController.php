@@ -29,7 +29,7 @@ class HopDongController extends Controller
     {
         HopDong::create($request->all());
 
-        return redirect('/hop-dong')->with('success','Thêm hợp đồng thành công');
+        return redirect('/admin/hop-dong')->with('success','Thêm hợp đồng thành công');
     }
 
     public function edit($id)
@@ -46,13 +46,13 @@ class HopDongController extends Controller
         $hopDong = HopDong::findOrFail($id);
         $hopDong->update($request->all());
 
-        return redirect('/hop-dong')->with('success','Cập nhật thành công');
+        return redirect('/admin/hop-dong')->with('success','Cập nhật thành công');
     }
 
     public function destroy($id)
     {
         HopDong::destroy($id);
 
-        return redirect('/hop-dong')->with('success','Xóa thành công');
+        return redirect('/admin/hop-dong')->with('success','Xóa thành công');
     }
 }

@@ -45,14 +45,15 @@ class CuDanController extends Controller
 
         $cuDan->update($request->all());
 
-        return redirect('/cu-dan');
+        return redirect('/admin/cu-dan');
     }
 
     public function destroy($id)
     {
-        CuDan::destroy($id);
+        $cuDan = CuDan::findOrFail($id);
+        $cuDan->delete();
 
-        return redirect('/cu-dan');
+        return redirect()->back()->with('success','Đã xóa cư dân');
     }
 
 }

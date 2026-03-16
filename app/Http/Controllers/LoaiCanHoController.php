@@ -24,7 +24,7 @@ class LoaiCanHoController extends Controller
     {
         LoaiCanHo::create($request->all());
 
-        return redirect('/loai-can-ho');
+        return redirect('/admin/loai-can-ho');
     }
 
     public function edit($id)
@@ -40,14 +40,14 @@ class LoaiCanHoController extends Controller
 
         $loaiCanHo->update($request->all());
 
-        return redirect('/loai-can-ho');
+        return redirect('/admin/loai-can-ho');
     }
 
     public function destroy($id)
     {
         LoaiCanHo::destroy($id);
 
-        return redirect('/loai-can-ho');
+        return redirect('/admin/loai-can-ho');
     }
 
 }

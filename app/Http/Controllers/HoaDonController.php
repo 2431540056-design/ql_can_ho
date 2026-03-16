@@ -42,7 +42,7 @@ class HoaDonController extends Controller
             'trang_thai' => 'Chưa thanh toán'
         ]);
 
-        return redirect('/hoa-don')->with('success', 'Tạo hóa đơn thành công');
+        return redirect('/admin/hoa-don')->with('success', 'Tạo hóa đơn thành công');
     }
 
 
@@ -75,7 +75,7 @@ class HoaDonController extends Controller
             'trang_thai' => $request->trang_thai
         ]);
 
-        return redirect('/hoa-don')->with('success', 'Cập nhật thành công');
+        return redirect('/admin/hoa-don')->with('success', 'Cập nhật thành công');
     }
 
 
@@ -83,7 +83,7 @@ class HoaDonController extends Controller
     {
         HoaDon::destroy($id);
 
-        return redirect('/hoa-don')->with('success', 'Xóa thành công');
+        return redirect('/admin/hoa-don')->with('success', 'Xóa thành công');
     }
 
 }
