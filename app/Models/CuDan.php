@@ -14,20 +14,25 @@ class CuDan extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'ten_cu_dan',
+        
+        'ma_nguoi_dung',
         'so_dien_thoai',
-        'email',
         'cccd',
         'ma_can_ho'
     ];
 
     public function canHo()
     {
-        return $this->belongsTo(CanHo::class,'ma_can_ho');
+        return $this->belongsTo(CanHo::class,'ma_can_ho','ma_can_ho');
     }
 
     public function nguoiDung()
     {
         return $this->belongsTo(User::class,'ma_nguoi_dung','ma_nguoi_dung');
+    }
+
+    public function hoaDon()
+    {
+        return $this->hasMany(HoaDon::class,'ma_can_ho','ma_can_ho');
     }
 }

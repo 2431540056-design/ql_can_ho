@@ -13,6 +13,8 @@ class User extends Authenticatable
     protected $table = 'nguoi_dung';
 
     protected $primaryKey = 'ma_nguoi_dung';
+    
+    public $timestamps = false;
 
     protected $fillable = [
         'ho_ten',

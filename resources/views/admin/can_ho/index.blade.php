@@ -4,7 +4,7 @@
 
 <h2 class="mb-3">Danh sách căn hộ</h2>
 
-<a href="/can-ho/create" class="btn btn-primary mb-3">
+<a href="/admin/can-ho/create" class="btn btn-primary mb-3">
 Thêm căn hộ
 </a>
 
@@ -68,7 +68,7 @@ Trống
 
 <td>
 
-<a href="/can-ho/{{ $canHo->ma_can_ho }}/edit"
+<a href="/admin/can-ho/{{ $canHo->ma_can_ho }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>

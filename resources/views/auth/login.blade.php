@@ -1,37 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Đăng nhập Căn hộ BabyCute</title>
-</head>
-<body>
+@extends('layouts.public')
 
-<h2>Đăng nhập Căn hộ BabyCute</h2>
+@section('content')
 
-@if(session('error'))
-<p style="color:red">{{session('error')}}</p>
-@endif
+<div class="container mt-5">
+
+<div class="row justify-content-center">
+
+<div class="col-md-5">
+
+<div class="card shadow">
+
+<div class="card-body p-4">
+
+<h3 class="text-center mb-4">
+Đăng nhập
+</h3>
 
 <form method="POST" action="/login">
 
 @csrf
 
+<div class="mb-3">
+
 <label>Email</label>
-<br>
-<input type="email" name="email">
 
-<br><br>
+<input type="email"
+name="email"
+class="form-control"
+required>
 
-<label>Password</label>
-<br>
-<input type="password" name="password">
+</div>
 
-<br><br>
+<div class="mb-3">
 
-<button type="submit">Đăng nhập</button>
+<label>Mật khẩu</label>
+
+<input type="password"
+name="password"
+class="form-control"
+required>
+
+</div>
+
+<button class="btn btn-primary w-100">
+Đăng nhập
+</button>
 
 </form>
 
-<a href="/">Quay về trang chủ</a>
+<div class="text-center mt-3">
 
-</body>
-</html>
+Chưa có tài khoản?
+
+<a href="/register">
+Đăng ký
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+@endsection

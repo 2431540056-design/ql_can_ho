@@ -4,7 +4,7 @@
 
 <h2 class="mb-3">Danh sách cư dân</h2>
 
-<a href="/cu-dan/create" class="btn btn-primary mb-3">
+<a href="/admin/cu-dan/create" class="btn btn-primary mb-3">
 Thêm cư dân
 </a>
 
@@ -51,7 +51,7 @@ Thêm cư dân
 
 <td>
 
-<a href="/cu-dan/{{ $cuDan->ma_cu_dan }}/edit"
+<a href="/admin/cu-dan/{{ $cuDan->ma_cu_dan }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>

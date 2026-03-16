@@ -4,7 +4,7 @@
 
 <h2 class="mb-3">Quản lý tài khoản</h2>
 
-<a href="/nguoi-dung/create" class="btn btn-primary mb-3">
+<a href="/admin/nguoi-dung/create" class="btn btn-primary mb-3">
 Thêm tài khoản
 </a>
 
@@ -53,7 +53,7 @@ Thêm tài khoản
 
 <td>
 
-<a href="/nguoi-dung/{{ $user->ma_nguoi_dung }}/edit"
+<a href="/admin/nguoi-dung/{{ $user->ma_nguoi_dung }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>

@@ -4,7 +4,7 @@
 
 <h2 class="mb-3">Danh sách hợp đồng</h2>
 
-<a href="/hop-dong/create" class="btn btn-primary mb-3">
+<a href="/admin/hop-dong/create" class="btn btn-primary mb-3">
 Thêm hợp đồng
 </a>
 
@@ -67,7 +67,7 @@ Thêm hợp đồng
 
 <td>
 
-<a href="/hop-dong/{{ $hd->ma_hop_dong }}/edit"
+<a href="/admin/hop-dong/{{ $hd->ma_hop_dong }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>

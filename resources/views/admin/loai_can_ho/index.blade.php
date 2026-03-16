@@ -4,7 +4,7 @@
 
 <h2 class="mb-3">Danh sách loại căn hộ</h2>
 
-<a href="/loai-can-ho/create" class="btn btn-primary mb-3">
+<a href="/admin/loai-can-ho/create" class="btn btn-primary mb-3">
 Thêm loại căn hộ
 </a>
 
@@ -44,7 +44,7 @@ Thêm loại căn hộ
 
 <td>
 
-<a href="/loai-can-ho/{{ $loai->ma_loai_can_ho }}/edit"
+<a href="/admin/loai-can-ho/{{ $loai->ma_loai_can_ho }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>

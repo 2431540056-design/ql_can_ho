@@ -91,21 +91,23 @@ font-weight:bold;
 
 <h4>Quản lý căn hộ</h4>
 
-<a href="/nguoi-dung">Quản lý tài khoản</a>
-<a href="/can-ho">Căn hộ</a>
-<a href="/loai-can-ho">Loại căn hộ</a>
-<a href="/cu-dan">Cư dân</a>
-<a href="/hop-dong">Hợp đồng</a>
+<a href="/admin/nguoi-dung">Quản lý tài khoản</a>
+<a href="/admin/can-ho">Căn hộ</a>
+<a href="/admin/loai-can-ho">Loại căn hộ</a>
+<a href="/admin/cu-dan">Cư dân</a>
+<a href="/admin/hop-dong">Hợp đồng</a>
+<a href="/admin/yeu-cau-thue">Yêu cầu thuê</a>
+
 
 <h4>Tài chính</h4>
 
-<a href="/hoa-don">Hóa đơn</a>
-<a href="/thanh-toan">Thanh toán</a>
+<a href="/admin/hoa-don">Hóa đơn</a>
+<a href="/admin/thanh-toan">Thanh toán</a>
 
 <h4>Dịch vụ</h4>
 
-<a href="/phan-anh">Phản ánh cư dân</a>
-<a href="/thong-bao">Thông báo</a>
+<a href="/admin/phan-anh">Phản ánh cư dân</a>
+<a href="/admin/thong-bao">Thông báo</a>
 
 <a href="/logout" style="color:#ff4d4f;margin-top:20px;">
 Đăng xuất
@@ -119,7 +121,7 @@ font-weight:bold;
 
 <div style="position:relative; font-size:22px;">
 
-<a href="/phan-anh" style="text-decoration:none">
+<a href="/admin/phan-anh" style="text-decoration:none">
 
 <i class="bi bi-bell"></i>
 

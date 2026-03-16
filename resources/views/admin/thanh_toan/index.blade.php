@@ -4,7 +4,7 @@
 
 <h2>Danh sách thanh toán</h2>
 
-<a href="/thanh-toan/create" class="btn btn-primary mb-3">
+<a href="/admin/thanh-toan/create" class="btn btn-primary mb-3">
 Thêm thanh toán
 </a>
 
@@ -35,7 +35,7 @@ Thêm thanh toán
 
 <td>
 
-<a href="/thanh-toan/{{ $tt->ma_thanh_toan }}/edit"
+<a href="/admin/thanh-toan/{{ $tt->ma_thanh_toan }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>

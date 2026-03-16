@@ -4,7 +4,7 @@
 
 <h2>Danh sách hóa đơn</h2>
 
-<a href="/hoa-don/create" class="btn btn-primary mb-3">
+<a href="/admin/hoa-don/create" class="btn btn-primary mb-3">
 Thêm hóa đơn
 </a>
 
@@ -35,7 +35,7 @@ Thêm hóa đơn
 
 <td>
 
-<a href="/hoa-don/{{ $hd->ma_hoa_don }}/edit"
+<a href="/admin/hoa-don/{{ $hd->ma_hoa_don }}/edit"
 class="btn btn-warning btn-sm">
 Sửa
 </a>

@@ -4,7 +4,7 @@
 
 <h2>Thông báo cư dân</h2>
 
-<a href="/thong-bao/create" class="btn btn-primary mb-3">
+<a href="/admin/thong-bao/create" class="btn btn-primary mb-3">
 Tạo thông báo
 </a>
 
