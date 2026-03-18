@@ -2,56 +2,61 @@
 
 @section('content')
 
-<h2>Danh sách hóa đơn</h2>
+<h2 class="mb-3">Quản lý hóa đơn</h2>
 
-<a href="/admin/hoa-don/create" class="btn btn-primary mb-3">
-Thêm hóa đơn
-</a>
+<div class="card">
+<div class="card-body">
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
 
+<thead class="table-light text-center">
 <tr>
-<th>Mã hóa đơn</th>
-<th>Mã căn hộ</th>
-<th>Tổng tiền</th>
+<th>ID</th>
+<th>Căn hộ</th>
+<th>Số tiền</th>
 <th>Hạn thanh toán</th>
 <th>Trạng thái</th>
 <th>Hành động</th>
 </tr>
+</thead>
+
+<tbody>
 
 @foreach($hoaDons as $hd)
 
-<tr>
+<tr class="text-center">
 
 <td>{{ $hd->ma_hoa_don }}</td>
 
-<td>{{ $hd->ma_can_ho }}</td>
+<td>{{ $hd->canHo->so_can_ho ?? '' }}</td>
 
-<td>{{ number_format($hd->tong_tien) }} VNĐ</td>
+<td class="text-primary fw-bold">
+{{ number_format($hd->tong_tien) }} VNĐ
+</td>
 
 <td>{{ $hd->han_thanh_toan }}</td>
 
-<td>{{ $hd->trang_thai }}</td>
+<td>
+<span class="badge 
+{{ $hd->trang_thai == 'da_thanh_toan' ? 'bg-success' : 'bg-danger' }}">
+{{ $hd->trang_thai }}
+</span>
+</td>
 
 <td>
 
-<a href="/admin/hoa-don/{{ $hd->ma_hoa_don }}/edit"
-class="btn btn-warning btn-sm">
-Sửa
-</a>
+@if($hd->trang_thai == 'chua_thanh_toan')
 
-<form action="/hoa-don/{{ $hd->ma_hoa_don }}"
-method="POST"
-style="display:inline">
-
+<form action="{{ url('/admin/thanh-toan/'.$hd->ma_hoa_don) }}" method="POST">
 @csrf
-@method('DELETE')
+@method('PUT')
 
-<button class="btn btn-danger btn-sm">
-Xóa
+<button class="btn btn-success btn-sm">
+Thanh toán
 </button>
-
 </form>
+
+@endif
 
 </td>
 
@@ -59,6 +64,11 @@ Xóa
 
 @endforeach
 
+</tbody>
+
 </table>
+
+</div>
+</div>
 
 @endsection

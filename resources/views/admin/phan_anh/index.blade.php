@@ -2,17 +2,30 @@
 
 @section('content')
 
-<h2>Phản ánh cư dân</h2>
+<h2 class="mb-3">Phản ánh cư dân</h2>
 
-<table class="table table-bordered">
+@if(session('success'))
+<div class="alert alert-success">
+{{ session('success') }}
+</div>
+@endif
 
+<div class="card shadow-sm">
+<div class="card-body">
+
+<table class="table table-bordered table-hover text-center">
+
+<thead class="table-light">
 <tr>
 <th>ID</th>
 <th>Cư dân</th>
 <th>Nội dung</th>
 <th>Trạng thái</th>
-<th>Hành động</th>
+<th width="150">Hành động</th>
 </tr>
+</thead>
+
+<tbody>
 
 @foreach($phanAnhs as $pa)
 
@@ -20,57 +33,28 @@
 
 <td>{{ $pa->ma_phan_anh }}</td>
 
-<td>
-{{ $pa->cuDan->nguoiDung->ho_ten ?? '' }}
-</td>
+<td>{{ $pa->cuDan->ma_cu_dan ?? '' }}</td>
 
-<td>{{ $pa->noi_dung }}</td>
+<td class="text-start">{{ $pa->noi_dung }}</td>
 
 <td>
-
-@if($pa->trang_thai == 'moi')
-
-<span class="badge bg-danger">Mới</span>
-
-@elseif($pa->trang_thai == 'dang_xu_ly')
-
-<span class="badge bg-warning">Đang xử lý</span>
-
-@else
-
-<span class="badge bg-success">Đã xử lý</span>
-
-@endif
-
+<span class="badge 
+{{ $pa->trang_thai == 'da_xu_ly' ? 'bg-success' : 'bg-warning' }}">
+{{ $pa->trang_thai }}
+</span>
 </td>
 
 <td>
 
-{{-- Nút xác nhận xử lý --}}
+<a href="{{ url('/admin/phan-anh/'.$pa->ma_phan_anh.'/edit') }}"
+class="btn btn-warning btn-sm">
+Sửa
+</a>
 
-@if($pa->trang_thai != 'da_xu_ly')
-
-<form action="/phan-anh/{{$pa->ma_phan_anh}}/xu-ly"
+<form action="{{ url('/admin/phan-anh/'.$pa->ma_phan_anh) }}"
 method="POST"
-style="display:inline">
-
-@csrf
-@method('PUT')
-
-<button class="btn btn-success btn-sm">
-Đã xử lý
-</button>
-
-</form>
-
-@endif
-
-
-{{-- Nút xóa --}}
-
-<form action="/phan-anh/{{ $pa->ma_phan_anh }}"
-method="POST"
-style="display:inline">
+style="display:inline;"
+onsubmit="return confirm('Xóa phản ánh?')">
 
 @csrf
 @method('DELETE')
@@ -87,6 +71,11 @@ Xóa
 
 @endforeach
 
+</tbody>
+
 </table>
+
+</div>
+</div>
 
 @endsection

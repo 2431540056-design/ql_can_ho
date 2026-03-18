@@ -4,34 +4,32 @@
 
 <h2>Thêm loại căn hộ</h2>
 
-<form method="POST" action="/loai-can-ho">
+<div class="card">
+<div class="card-body">
+
+<form method="POST" action="{{ url('/admin/loai-can-ho') }}">
 
 @csrf
 
 <div class="mb-3">
 <label>Tên loại</label>
-<input type="text" name="ten_loai" class="form-control">
-</div>
-
-<div class="mb-3">
-<label>Diện tích trung bình</label>
-<input type="number" name="dien_tich_tb" class="form-control">
+<input type="text" name="ten_loai" class="form-control" required>
 </div>
 
 <div class="mb-3">
 <label>Giá cơ bản</label>
-<input type="number" name="gia_co_ban" class="form-control">
+<input type="number" name="gia_co_ban" class="form-control" required>
 </div>
 
-<div class="mb-3">
-<label>Mô tả</label>
-<textarea name="mo_ta" class="form-control"></textarea>
-</div>
+<button class="btn btn-primary">Thêm</button>
 
-<button class="btn btn-success">
-Lưu
-</button>
+<a href="{{ url('/admin/loai-can-ho') }}" class="btn btn-secondary">
+Quay lại
+</a>
 
 </form>
+
+</div>
+</div>
 
 @endsection

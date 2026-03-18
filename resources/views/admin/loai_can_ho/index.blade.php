@@ -2,56 +2,67 @@
 
 @section('content')
 
-<h2 class="mb-3">Danh sách loại căn hộ</h2>
+<h2 class="mb-3">Quản lý hợp đồng</h2>
 
-<a href="/admin/loai-can-ho/create" class="btn btn-primary mb-3">
-Thêm loại căn hộ
-</a>
+@if(session('success'))
+<div class="alert alert-success">
+{{ session('success') }}
+</div>
+@endif
 
-<div class="card">
+<div class="card shadow-sm">
 <div class="card-body">
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover align-middle">
 
-<thead class="table-light">
-
+<thead class="table-light text-center">
 <tr>
 <th>ID</th>
-<th>Tên loại</th>
-<th>Diện tích TB</th>
-<th>Giá cơ bản</th>
-<th>Mô tả</th>
+<th>Căn hộ</th>
+<th>Cư dân</th>
+<th>Giá thuê</th>
+<th>Ngày bắt đầu</th>
+<th>Trạng thái</th>
 <th width="150">Hành động</th>
 </tr>
-
 </thead>
 
 <tbody>
 
-@foreach($loaiCanHos as $loai)
+@foreach($hopDongs as $hd)
 
-<tr>
+<tr class="text-center">
 
-<td>{{ $loai->ma_loai_can_ho }}</td>
+<td>{{ $hd->ma_hop_dong }}</td>
 
-<td>{{ $loai->ten_loai }}</td>
+<td>{{ $hd->canHo->so_can_ho ?? '' }}</td>
 
-<td>{{ $loai->dien_tich_tb }} m²</td>
+<td>{{ $hd->cuDan->ma_cu_dan ?? '' }}</td>
 
-<td>{{ number_format($loai->gia_co_ban) }} VNĐ</td>
+<td class="text-primary fw-bold">
+{{ number_format($hd->gia_thue) }} VNĐ
+</td>
 
-<td>{{ $loai->mo_ta }}</td>
+<td>{{ $hd->ngay_bat_dau }}</td>
+
+<td>
+<span class="badge 
+{{ $hd->trang_thai == 'dang_hieu_luc' ? 'bg-success' : 'bg-secondary' }}">
+{{ $hd->trang_thai }}
+</span>
+</td>
 
 <td>
 
-<a href="/admin/loai-can-ho/{{ $loai->ma_loai_can_ho }}/edit"
+<a href="{{ url('/admin/hop-dong/'.$hd->ma_hop_dong.'/edit') }}"
 class="btn btn-warning btn-sm">
 Sửa
 </a>
 
-<form action="/loai-can-ho/{{ $loai->ma_loai_can_ho }}"
+<form action="{{ url('/admin/hop-dong/'.$hd->ma_hop_dong) }}"
 method="POST"
-style="display:inline">
+style="display:inline;"
+onsubmit="return confirm('Bạn có chắc muốn xóa không?')">
 
 @csrf
 @method('DELETE')

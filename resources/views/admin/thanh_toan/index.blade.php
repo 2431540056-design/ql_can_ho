@@ -2,22 +2,31 @@
 
 @section('content')
 
-<h2>Danh sách thanh toán</h2>
+<h2 class="mb-3">Quản lý thanh toán</h2>
 
-<a href="/admin/thanh-toan/create" class="btn btn-primary mb-3">
-Thêm thanh toán
-</a>
+@if(session('success'))
+<div class="alert alert-success">
+{{ session('success') }}
+</div>
+@endif
 
-<table class="table table-bordered">
+<div class="card shadow-sm">
+<div class="card-body">
 
+<table class="table table-bordered table-hover text-center">
+
+<thead class="table-light">
 <tr>
 <th>ID</th>
-<th>Hóa đơn</th>
+<th>Mã hóa đơn</th>
 <th>Số tiền</th>
-<th>Ngày thanh toán</th>
 <th>Phương thức</th>
-<th>Hành động</th>
+<th>Ngày thanh toán</th>
+<th width="180">Hành động</th>
 </tr>
+</thead>
+
+<tbody>
 
 @foreach($thanhToans as $tt)
 
@@ -27,22 +36,29 @@ Thêm thanh toán
 
 <td>{{ $tt->ma_hoa_don }}</td>
 
-<td>{{ number_format($tt->so_tien) }} VNĐ</td>
+<td class="text-success fw-bold">
+{{ number_format($tt->so_tien) }} VNĐ
+</td>
+
+<td>
+<span class="badge bg-info">
+{{ $tt->phuong_thuc }}
+</span>
+</td>
 
 <td>{{ $tt->ngay_thanh_toan }}</td>
 
-<td>{{ $tt->phuong_thuc }}</td>
-
 <td>
 
-<a href="/admin/thanh-toan/{{ $tt->ma_thanh_toan }}/edit"
+<a href="{{ url('/admin/thanh-toan/'.$tt->ma_thanh_toan.'/edit') }}"
 class="btn btn-warning btn-sm">
 Sửa
 </a>
 
-<form action="/thanh-toan/{{ $tt->ma_thanh_toan }}"
+<form action="{{ url('/admin/thanh-toan/'.$tt->ma_thanh_toan) }}"
 method="POST"
-style="display:inline">
+style="display:inline;"
+onsubmit="return confirm('Xóa thanh toán này?')">
 
 @csrf
 @method('DELETE')
@@ -59,6 +75,11 @@ Xóa
 
 @endforeach
 
+</tbody>
+
 </table>
+
+</div>
+</div>
 
 @endsection

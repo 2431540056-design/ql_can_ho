@@ -2,84 +2,50 @@
 
 @section('content')
 
-<h2 class="mb-3">Quản lý tài khoản</h2>
-
-<a href="/nguoi-dung/create" class="btn btn-primary mb-3">
-Thêm tài khoản
-</a>
+<h2>Thêm tài khoản</h2>
 
 <div class="card">
 <div class="card-body">
 
-<table class="table table-bordered table-hover">
-
-<thead class="table-light">
-
-<tr>
-<th>ID</th>
-<th>Họ tên</th>
-<th>Email</th>
-<th>Vai trò</th>
-<th width="150">Hành động</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-@foreach($users as $user)
-
-<tr>
-
-<td>{{ $user->ma_nguoi_dung }}</td>
-
-<td>{{ $user->ho_ten }}</td>
-
-<td>{{ $user->email }}</td>
-
-<td>
-
-@if($user->vaiTro->ten_vai_tro == 'admin')
-
-<span class="badge bg-danger">Admin</span>
-
-@else
-
-<span class="badge bg-success">Cư dân</span>
-
-@endif
-
-</td>
-
-<td>
-
-<a href="/nguoi-dung/{{ $user->ma_nguoi_dung }}/edit"
-class="btn btn-warning btn-sm">
-Sửa
-</a>
-
-<form action="/nguoi-dung/{{ $user->ma_nguoi_dung }}"
-method="POST"
-style="display:inline">
+<form method="POST" action="{{ url('/admin/nguoi-dung') }}">
 
 @csrf
-@method('DELETE')
 
-<button class="btn btn-danger btn-sm">
-Xóa
-</button>
+<div class="mb-3">
+<label>Tên</label>
+<input type="text" name="ten" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Email</label>
+<input type="email" name="email" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Số điện thoại</label>
+<input type="text" name="so_dien_thoai" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Mật khẩu</label>
+<input type="password" name="mat_khau" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Vai trò</label>
+<select name="vai_tro" class="form-control">
+<option value="user">Người dùng</option>
+<option value="admin">Admin</option>
+</select>
+</div>
+
+<button class="btn btn-primary">Thêm</button>
+
+<a href="/admin/nguoi-dung" class="btn btn-secondary">
+Quay lại
+</a>
 
 </form>
-
-</td>
-
-</tr>
-
-@endforeach
-
-</tbody>
-
-</table>
 
 </div>
 </div>

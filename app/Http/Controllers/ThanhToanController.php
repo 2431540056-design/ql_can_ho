@@ -38,20 +38,21 @@ class ThanhToanController extends Controller
         return view('admin.thanh_toan.edit', compact('thanhToan','hoaDons'));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $thanhToan = ThanhToan::findOrFail($id);
 
         $thanhToan->update($request->all());
 
-        return redirect('/thanh-toan');
+        return redirect('/admin/thanh-toan')
+        ->with('success','Cập nhật thành công');
     }
 
     public function destroy($id)
     {
         ThanhToan::destroy($id);
 
-        return redirect('/thanh-toan');
+        return back()->with('success','Xóa thành công');
     }
 
 }

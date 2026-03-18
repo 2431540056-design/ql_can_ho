@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PhanAnh;
+use Illuminate\Http\Request;
 
 class PhanAnhController extends Controller
 {
@@ -13,11 +14,28 @@ class PhanAnhController extends Controller
         return view('admin.phan_anh.index',compact('phanAnhs'));
     }
 
+    public function edit($id)
+    {
+        $phanAnh = PhanAnh::findOrFail($id);
+
+        return view('admin.phan_anh.edit', compact('phanAnh'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $phanAnh = PhanAnh::findOrFail($id);
+
+        $phanAnh->update($request->all());
+
+        return redirect('/admin/phan-anh')
+        ->with('success','Cập nhật thành công');
+    }
+
     public function destroy($id)
     {
         PhanAnh::destroy($id);
 
-        return redirect('/phan-anh');
+        return back()->with('success','Xóa thành công');
     }
 
     public function xuLy($id)

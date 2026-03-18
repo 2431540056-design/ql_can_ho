@@ -18,4 +18,9 @@ class ThongBao extends Model
         'ma_cu_dan',
         'ngay_gui'
     ];
+
+    public function cuDan()
+    {
+        return $this->belongsTo(CuDan::class,'ma_cu_dan');
+    }
 }

@@ -4,32 +4,37 @@
 
 <h2 class="mb-3">Quản lý tài khoản</h2>
 
-<a href="/admin/nguoi-dung/create" class="btn btn-primary mb-3">
+<a href="{{ url('/admin/nguoi-dung/create') }}" class="btn btn-primary mb-3">
 Thêm tài khoản
 </a>
 
-<div class="card">
+@if(session('success'))
+<div class="alert alert-success">
+{{ session('success') }}
+</div>
+@endif
+
+<div class="card shadow-sm">
 <div class="card-body">
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover align-middle">
 
-<thead class="table-light">
-
+<thead class="table-light text-center">
 <tr>
 <th>ID</th>
-<th>Họ tên</th>
+<th>Tên</th>
 <th>Email</th>
+<th>SĐT</th>
 <th>Vai trò</th>
-<th width="150">Hành động</th>
+<th width="180">Hành động</th>
 </tr>
-
 </thead>
 
 <tbody>
 
 @foreach($users as $user)
 
-<tr>
+<tr class="text-center">
 
 <td>{{ $user->ma_nguoi_dung }}</td>
 
@@ -37,28 +42,28 @@ Thêm tài khoản
 
 <td>{{ $user->email }}</td>
 
+<td>{{ $user->cuDan->so_dien_thoai ?? '' }}</td>
+
 <td>
+<span class="badge 
+{{ $user->vaiTro->ten_vai_tro == 'admin' ? 'bg-danger' : 'bg-primary' }}">
 
-@if($user->vaiTro->ten_vai_tro == 'admin')
+{{ $user->vaiTro->ten_vai_tro == 'admin' ? '👑 Admin' : '👤 Cư dân' }}
 
-<span class="badge bg-danger">Admin</span>
-
-@else
-
-<span class="badge bg-success">Cư dân</span>
-
-@endif
-
+</span>
 </td>
 
 <td>
 
-<a href="/admin/nguoi-dung/{{ $user->ma_nguoi_dung }}/edit"
+<a href="{{ url('/admin/nguoi-dung/'.$user->ma_nguoi_dung.'/edit') }}"
 class="btn btn-warning btn-sm">
 Sửa
 </a>
 
-<form action="{{ url('/admin/nguoi-dung/'.$user->ma_nguoi_dung) }}" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản này không?')" style="display:inline;">
+<form action="{{ url('/admin/nguoi-dung/'.$user->ma_nguoi_dung) }}"
+method="POST"
+style="display:inline;"
+onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản này không?')">
 
 @csrf
 @method('DELETE')

@@ -20,10 +20,15 @@ class DuyetThueController extends Controller
 
     public function duyet($id)
     {
-        $yc = YeuCauThue::findOrFail($id);
+        $yc = YeuCauThue::with('nguoiDung')->findOrFail($id);
 
-        $yc->trang_thai = "da_duyet";
-        $yc->save();
+        if($yc->trang_thai == 'da_duyet'){
+        return back()->with('error','Yêu cầu đã được duyệt rồi');
+        }
+
+        $yc->update([
+        'trang_thai' => 'da_duyet'
+        ]);
 
         $cuDan = CuDan::create([
         'ma_nguoi_dung' => $yc->ma_nguoi_dung,
@@ -43,9 +48,9 @@ class DuyetThueController extends Controller
         'trang_thai' => 'dang_hieu_luc'
         ]);
 
-        $canHo = CanHo::find($yc->ma_can_ho);
-        $canHo->trang_thai = 'da_thue';
-        $canHo->save();
+        $canHo->update([
+        'trang_thai' => 'dang_o'
+        ]);
 
         return back()->with('success','Đã duyệt yêu cầu thuê và tạo hợp đồng');
     }

@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::with('vaiTro')->get();
+        $users = User::with(['vaiTro','cuDan'])->get();
 
         return view('admin.nguoi_dung.index', compact('users'));
     }
@@ -52,19 +52,23 @@ class UserController extends Controller
         $data = $request->all();
 
         if($request->mat_khau){
-            $data['mat_khau'] = Hash::make($request->mat_khau);
+        $data['mat_khau'] = Hash::make($request->mat_khau);
+        }else{
+            unset($data['mat_khau']);
         }
 
         $user->update($data);
 
-        return redirect('/admin/nguoi-dung');
+        return redirect('/admin/nguoi-dung')
+        ->with('success','Thêm tài khoản thành công');
     }
 
     public function destroy($id)
     {
         User::destroy($id);
 
-        return redirect('/admin/nguoi-dung');
+        return redirect('/admin/nguoi-dung')
+        ->with('success','Xóa tài khoản thành công');
     }
 
 }

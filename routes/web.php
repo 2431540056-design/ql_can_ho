@@ -104,6 +104,12 @@ Route::prefix('admin')->middleware(['auth','role:admin'])->group(function(){
 
     Route::resource('thanh-toan',ThanhToanController::class);
 
+    Route::get('/admin/thanh-toan', [ThanhToanController::class,'index']);
+
+    Route::delete('/admin/thanh-toan/{id}', [ThanhToanController::class,'destroy']);
+
+    Route::post('/admin/thanh-toan/{id}', [ThanhToanController::class,'thanhToan']);
+
     Route::resource('nguoi-dung',UserController::class);
 
     Route::resource('phan-anh',PhanAnhController::class);

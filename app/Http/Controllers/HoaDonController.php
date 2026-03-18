@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\HoaDon;
 use App\Models\CanHo;
+use App\Models\ThanhToan;
 
 class HoaDonController extends Controller
 {
@@ -84,6 +85,23 @@ class HoaDonController extends Controller
         HoaDon::destroy($id);
 
         return redirect('/admin/hoa-don')->with('success', 'Xóa thành công');
+    }
+
+    public function thanhToan($id)
+    {
+        $hoaDon = HoaDon::findOrFail($id);
+
+        ThanhToan::create([
+            'ma_hoa_don' => $id,
+            'so_tien' => $hoaDon->tong_tien,
+            'ngay_thanh_toan' => now()
+        ]);
+
+        $hoaDon->update([
+            'trang_thai' => 'da_thanh_toan'
+        ]);
+
+        return back()->with('success','Thanh toán thành công');
     }
 
 }

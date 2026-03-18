@@ -12,7 +12,8 @@ class LoaiCanHoController extends Controller
     {
         $loaiCanHos = LoaiCanHo::all();
 
-        return view('admin.loai_can_ho.index', compact('loaiCanHos'));
+        return view('admin.loai_can_ho.index',
+        compact('loaiCanHos'));
     }
 
     public function create()
@@ -24,30 +25,33 @@ class LoaiCanHoController extends Controller
     {
         LoaiCanHo::create($request->all());
 
-        return redirect('/admin/loai-can-ho');
+        return redirect('/admin/loai-can-ho')
+        ->with('success','Thêm loại căn hộ thành công');
     }
 
     public function edit($id)
     {
-        $loaiCanHo = LoaiCanHo::findOrFail($id);
+        $loai = LoaiCanHo::findOrFail($id);
 
-        return view('admin.loai_can_ho.edit',compact('loaiCanHo'));
+        return view('admin.loai_can_ho.edit',compact('loai'));
     }
 
     public function update(Request $request,$id)
     {
-        $loaiCanHo = LoaiCanHo::findOrFail($id);
+        $loai = LoaiCanHo::findOrFail($id);
 
-        $loaiCanHo->update($request->all());
+        $loai->update($request->all());
 
-        return redirect('/admin/loai-can-ho');
+        return redirect('/admin/loai-can-ho')
+        ->with('success','Cập nhật thành công');
     }
 
     public function destroy($id)
     {
         LoaiCanHo::destroy($id);
 
-        return redirect('/admin/loai-can-ho');
+        return redirect('/admin/loai-can-ho')
+    ->with('success','Xóa thành công');
     }
 
 }

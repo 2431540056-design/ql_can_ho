@@ -53,14 +53,10 @@ Thêm hợp đồng
 
 <td>
 
-@if($hd->trang_thai == 'con_hieu_luc')
-
-<span class="badge bg-success">Còn hiệu lực</span>
-
+@if(strtotime($hd->ngay_ket_thuc) >= time())
+<span class="badge bg-success">Đang hiệu lực</span>
 @else
-
-<span class="badge bg-secondary">Hết hạn</span>
-
+<span class="badge bg-danger">Hết hạn</span>
 @endif
 
 </td>
