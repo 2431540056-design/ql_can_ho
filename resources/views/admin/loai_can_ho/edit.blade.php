@@ -2,57 +2,40 @@
 
 @section('content')
 
-<h2 class="mb-3">Sửa hợp đồng</h2>
+<h2>Sửa loại căn hộ</h2>
 
 <div class="card">
 <div class="card-body">
 
 <form method="POST"
-action="{{ url('/admin/hop-dong/'.$hopDong->ma_hop_dong) }}">
+action="{{ url('/admin/loai-can-ho/'.$loai->ma_loai_can_ho) }}">
 
 @csrf
 @method('PUT')
 
 <div class="mb-3">
-<label>Giá thuê</label>
+<label>Tên loại</label>
+<input type="text"
+name="ten_loai"
+value="{{ $loai->ten_loai }}"
+class="form-control"
+required>
+</div>
+
+<div class="mb-3">
+<label>Giá cơ bản</label>
 <input type="number"
-name="gia_thue"
-value="{{ $hopDong->gia_thue }}"
-class="form-control">
-</div>
-
-<div class="mb-3">
-<label>Ngày bắt đầu</label>
-<input type="date"
-name="ngay_bat_dau"
-value="{{ $hopDong->ngay_bat_dau }}"
-class="form-control">
-</div>
-
-<div class="mb-3">
-<label>Ngày kết thúc</label>
-<input type="date"
-name="ngay_ket_thuc"
-value="{{ $hopDong->ngay_ket_thuc }}"
-class="form-control">
-</div>
-
-<div class="mb-3">
-<label>Trạng thái</label>
-<select name="trang_thai" class="form-control">
-<option value="dang_hieu_luc"
-{{ $hopDong->trang_thai == 'dang_hieu_luc' ? 'selected' : '' }}>
-Đang hiệu lực
-</option>
-
-<option value="het_han"
-{{ $hopDong->trang_thai == 'het_han' ? 'selected' : '' }}>
-Hết hạn
-</option>
-</select>
+name="gia_co_ban"
+value="{{ $loai->gia_co_ban }}"
+class="form-control"
+required>
 </div>
 
 <button class="btn btn-primary">Cập nhật</button>
+
+<a href="{{ url('/admin/loai-can-ho') }}" class="btn btn-secondary">
+Quay lại
+</a>
 
 </form>
 
