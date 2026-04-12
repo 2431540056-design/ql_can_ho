@@ -4,7 +4,10 @@
 
 <h2>Thêm hợp đồng</h2>
 
-<form method="POST" action="/hop-dong">
+<div class="card">
+<div class="card-body">
+
+<form method="POST" action="/admin/hop-dong">
 
 @csrf
 

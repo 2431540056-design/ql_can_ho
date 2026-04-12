@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PhanAnh;
+use App\Models\CuDan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PhanAnhController extends Controller
 {
@@ -47,5 +49,25 @@ class PhanAnhController extends Controller
         $phanAnh->save();
 
         return redirect('/phan-anh');
+    }
+
+    public function create()
+    {
+        return view('public.phan_anh.create');
+    }
+
+    public function store(Request $request)
+    {
+        $cuDan = CuDan::where('ma_nguoi_dung', Auth::id())->first();
+
+        PhanAnh::create([
+            'ma_cu_dan' => $cuDan->ma_cu_dan,
+            'noi_dung' => $request->noi_dung,
+            'trang_thai' => 'cho_xu_ly',
+            'ngay_gui' => now()
+        ]);
+
+        return redirect('/my-apartment')
+            ->with('success', 'Gửi phản ánh thành công');
     }
 }

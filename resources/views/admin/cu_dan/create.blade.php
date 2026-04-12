@@ -4,8 +4,11 @@
 
 <h2>Thêm cư dân</h2>
 
-<form method="POST" action="/cu-dan">
+<div class="card">
+<div class="card-body">
 
+<form method="POST" action="{{ url('/admin/cu-dan') }}">
+    
 @csrf
 
 <div class="mb-3">

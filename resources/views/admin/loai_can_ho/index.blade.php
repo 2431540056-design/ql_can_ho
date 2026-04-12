@@ -24,6 +24,7 @@ Thêm loại căn hộ
 <th>ID</th>
 <th>Tên loại</th>
 <th>Giá cơ bản</th>
+<th>Diện tích</th>
 <th width="150">Hành động</th>
 </tr>
 </thead>
@@ -41,6 +42,8 @@ Thêm loại căn hộ
 <td class="text-primary fw-bold">
 {{ number_format($loai->gia_co_ban) }} VNĐ
 </td>
+
+<td>{{ $loai->dien_tich_tb}}</td>
 
 <td>
 

@@ -21,6 +21,11 @@
 <input type="number" name="gia_co_ban" class="form-control" required>
 </div>
 
+<div class="mb-3">
+<label>Diện tích</label>
+<input type="number" name="gia_co_ban" class="form-control" required>
+</div>
+
 <button class="btn btn-primary">Thêm</button>
 
 <a href="{{ url('/admin/loai-can-ho') }}" class="btn btn-secondary">

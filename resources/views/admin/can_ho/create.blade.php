@@ -4,7 +4,10 @@
 
 <h2>Thêm căn hộ</h2>
 
-<form method="POST" action="/can-ho">
+<div class="card">
+<div class="card-body">
+
+<form method="POST" action="{{ url('/admin/can-ho') }}">
 
 @csrf
 

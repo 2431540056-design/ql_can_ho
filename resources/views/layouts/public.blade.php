@@ -110,6 +110,57 @@ padding:30px;
 margin-top:50px;
 }
 
+.carousel-item img{
+height:500px;
+object-fit:cover;
+}
+
+.section-title{
+font-weight:bold;
+color:#1E3A5F;
+margin-bottom:15px;
+}
+
+.card{
+border:none;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.icon-box{
+background:#f1f3f5;
+padding:20px;
+border-radius:12px;
+transition:0.3s;
+}
+
+.icon-box:hover{
+background:#C9A227;
+color:white;
+transform:translateY(-5px);
+}
+
+.hero{
+    height:500px;
+    background:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2') center/cover no-repeat;
+    position:relative;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    top:0;
+    left:0;
+}
+
+.hero .container{
+    position:relative;
+    z-index:2;
+}
+
 </style>
 
 </head>
@@ -141,15 +192,7 @@ margin-top:50px;
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="/dich-vu">Dịch vụ</a>
-</li>
-
-<li class="nav-item">
 <a class="nav-link" href="/can-ho">Căn hộ</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="/lien-he">Liên hệ</a>
 </li>
 
 </ul>

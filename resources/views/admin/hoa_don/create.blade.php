@@ -4,7 +4,10 @@
 
 <h2>Thêm hóa đơn</h2>
 
-<form method="POST" action="/hoa-don">
+<div class="card">
+<div class="card-body">
+
+<form method="POST" action="{{ url('/admin/hoa-don') }}">
 
 @csrf
 

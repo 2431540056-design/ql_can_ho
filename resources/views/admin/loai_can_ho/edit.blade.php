@@ -31,6 +31,15 @@ class="form-control"
 required>
 </div>
 
+<div class="mb-3">
+<label>Diện tích</label>
+<input type="text"
+name="dien_tich_tb"
+value="{{ $loai->dien_tich_tb }}"
+class="form-control"
+required>
+</div>
+
 <button class="btn btn-primary">Cập nhật</button>
 
 <a href="{{ url('/admin/loai-can-ho') }}" class="btn btn-secondary">

@@ -36,7 +36,7 @@ Lọc căn hộ
 
 <div class="row">
 
-@foreach($canhos as $canho)
+@foreach($canHos as $canho)
 
 <div class="col-md-4 mb-4">
 
@@ -93,7 +93,7 @@ Xem chi tiết
 </div>
 
 <div class="mt-4">
-{{ $canhos->links() }}
+{{ $canHos->links() }}
 </div>
 
 </div>

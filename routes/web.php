@@ -39,7 +39,9 @@ Route::get('/can-ho/{id}',[ApartmentController::class,'show']);
 
 Route::post('/yeu-cau-thue',[YeuCauThueController::class,'store']);
 
-
+Route::get('/gioi-thieu', function () {
+    return view('public.gioi_thieu');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +79,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/my-apartment',[ApartmentController::class,'myApartment']);
 
     Route::get('/dashboard', [ApartmentController::class,'dashboard']);
+
+    Route::get('/my-apartment/phan-anh/create', [PhanAnhController::class, 'create']);
+    Route::post('/my-apartment/phan-anh', [PhanAnhController::class, 'store']);
 });
 
 
@@ -104,11 +109,11 @@ Route::prefix('admin')->middleware(['auth','role:admin'])->group(function(){
 
     Route::resource('thanh-toan',ThanhToanController::class);
 
-    Route::get('/admin/thanh-toan', [ThanhToanController::class,'index']);
+    Route::get('/thanh-toan', [ThanhToanController::class,'index']);
 
     Route::delete('/admin/thanh-toan/{id}', [ThanhToanController::class,'destroy']);
 
-    Route::post('/admin/thanh-toan/{id}', [ThanhToanController::class,'thanhToan']);
+    Route::post('/hoa-don/thanh-toan/{id}', [HoaDonController::class, 'thanhToan']);
 
     Route::resource('nguoi-dung',UserController::class);
 

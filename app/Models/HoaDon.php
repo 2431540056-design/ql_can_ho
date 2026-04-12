@@ -21,7 +21,7 @@ class HoaDon extends Model
 
     public function canHo()
     {
-        return $this->belongsTo(CanHo::class,'ma_can_ho');
+        return $this->belongsTo(CanHo::class,'ma_can_ho', 'ma_can_ho');
     }
 
     public function thanhToans()

@@ -4,6 +4,10 @@
 
 <h2 class="mb-3">Quản lý hóa đơn</h2>
 
+<a href="{{ url('/admin/hoa-don/create') }}" class="btn btn-primary mb-3">
+    Thêm hóa đơn
+</a>
+
 <div class="card">
 <div class="card-body">
 
@@ -31,7 +35,7 @@
 <td>{{ $hd->canHo->so_can_ho ?? '' }}</td>
 
 <td class="text-primary fw-bold">
-{{ number_format($hd->tong_tien) }} VNĐ
+{{ number_format($hd->tong_tien, 0, ',', '.') }} VNĐ
 </td>
 
 <td>{{ $hd->han_thanh_toan }}</td>
@@ -44,20 +48,23 @@
 </td>
 
 <td>
+    @if($hd->trang_thai == 'chua_thanh_toan')
+        <form method="POST" action="/admin/hoa-don/thanh-toan/{{ $hd->ma_hoa_don }}" style="display:flex; gap:5px;">
+            @csrf
 
-@if($hd->trang_thai == 'chua_thanh_toan')
+            <select name="phuong_thuc" class="form-control" style="width:130px;" required>
+                <option value=""></option>
+                <option value="tien_mat">Tiền mặt</option>
+                <option value="chuyen_khoan">Chuyển khoản</option>
+            </select>
 
-<form action="{{ url('/admin/thanh-toan/'.$hd->ma_hoa_don) }}" method="POST">
-@csrf
-@method('PUT')
-
-<button class="btn btn-success btn-sm">
-Thanh toán
-</button>
-</form>
-
-@endif
-
+            <button class="btn btn-success btn-sm">
+                Thanh toán
+            </button>
+        </form>
+    @else
+        <span class="text-muted">Đã thanh toán</span>
+    @endif
 </td>
 
 </tr>

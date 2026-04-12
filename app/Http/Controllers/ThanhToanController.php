@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ThanhToan;
 use App\Models\HoaDon;
+use Carbon\Carbon;
 
 class ThanhToanController extends Controller
 {
@@ -54,5 +55,4 @@ class ThanhToanController extends Controller
 
         return back()->with('success','Xóa thành công');
     }
-
 }

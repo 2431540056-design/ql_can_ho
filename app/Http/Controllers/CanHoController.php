@@ -30,7 +30,6 @@ class CanHoController extends Controller
 
         return redirect('/admin/can-ho')
         ->with('success','Thêm căn hộ thành công');
-
     }
 
     public function edit($id)

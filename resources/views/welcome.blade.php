@@ -4,54 +4,44 @@
 
 <!-- HERO -->
 
-<div class="hero">
-
-<div>
-
-<h1>Căn hộ BabyCute</h1>
-
-<p>Không gian sống hiện đại – tiện nghi – an toàn</p>
-
-<a href="/can-ho" class="btn btn-warning btn-lg mt-3">
-Xem căn hộ
-</a>
-
-</div>
-
+<div class="hero text-white d-flex align-items-center">
+    <div class="container text-center">
+        <h1 class="fw-bold display-4">Căn hộ BabyCute</h1>
+        <p class="lead">Không gian sống hiện đại – tiện nghi – an toàn</p>
+        <a href="/can-ho" class="btn btn-warning btn-lg mt-3 px-4">
+            Xem căn hộ
+        </a>
+    </div>
 </div>
 
 
 <!-- GIỚI THIỆU -->
 
 <div class="container mt-5">
-
-<div class="row">
-
-<div class="col-md-6">
-
-<h2>Về chúng tôi</h2>
-
-<p>
-BabyCute Apartment mang đến không gian sống hiện đại,
-an ninh và tiện nghi cho cư dân.
-</p>
-
-<p>
-Hệ thống quản lý căn hộ giúp cư dân dễ dàng thanh toán,
-xem thông báo và quản lý hợp đồng thuê.
-</p>
-
-</div>
+<div class="row align-items-center">
 
 <div class="col-md-6">
+    <h2 class="fw-bold">Về chúng tôi</h2>
+    <p class="text-muted">
+        BabyCute Apartment mang đến không gian sống hiện đại, an ninh và tiện nghi cho cư dân.
+    </p>
 
-<img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688"
-class="img-fluid rounded">
+    <p>
+        Hệ thống giúp cư dân dễ dàng thanh toán, xem thông báo và quản lý hợp đồng thuê.
+    </p>
 
+    <ul class="list-unstyled mt-3">
+        <li>✔ Vị trí trung tâm</li>
+        <li>✔ An ninh 24/7</li>
+        <li>✔ Dịch vụ đầy đủ</li>
+    </ul>
+</div>
+
+<div class="col-md-6">
+    <img src="{{ asset('images/slider1.jpg') }}" class="img-fluid rounded shadow">
 </div>
 
 </div>
-
 </div>
 
 
@@ -141,38 +131,34 @@ Xem chi tiết
 
 <!-- DỊCH VỤ -->
 
-<div class="container mt-5">
+<div class="container mt-5 text-center">
 
-<h2 class="text-center mb-4">Dịch vụ</h2>
+<h2 class="fw-bold mb-4">Tiện ích nổi bật</h2>
 
-<div class="row text-center">
-
-<div class="col-md-4">
-
-<h5>Bãi đỗ xe</h5>
-
-<p>Bãi xe rộng rãi và an toàn</p>
-
-</div>
+<div class="row">
 
 <div class="col-md-4">
-
-<h5>Bảo vệ 24/7</h5>
-
-<p>An ninh nghiêm ngặt</p>
-
+    <div class="card p-4 shadow-sm">
+        <h5>🏊 Hồ bơi</h5>
+        <p>Không gian thư giãn cho cư dân</p>
+    </div>
 </div>
 
 <div class="col-md-4">
+    <div class="card p-4 shadow-sm">
+        <h5>🏋️ Gym</h5>
+        <p>Phòng tập hiện đại</p>
+    </div>
+</div>
 
-<h5>Internet tốc độ cao</h5>
-
-<p>WiFi toàn bộ tòa nhà</p>
-
+<div class="col-md-4">
+    <div class="card p-4 shadow-sm">
+        <h5>🌳 Công viên</h5>
+        <p>Không gian xanh thoáng mát</p>
+    </div>
 </div>
 
 </div>
-
 </div>
 
 @endsection

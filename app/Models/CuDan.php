@@ -35,4 +35,9 @@ class CuDan extends Model
     {
         return $this->hasMany(HoaDon::class,'ma_can_ho','ma_can_ho');
     }
+
+    public function hopDongs()
+    {
+        return $this->hasMany(HopDong::class, 'ma_cu_dan', 'ma_cu_dan');
+    }
 }

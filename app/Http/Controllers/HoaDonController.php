@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\HoaDon;
 use App\Models\CanHo;
 use App\Models\ThanhToan;
+use Carbon\Carbon;
 
 class HoaDonController extends Controller
 {
@@ -20,30 +21,24 @@ class HoaDonController extends Controller
 
     public function create()
     {
+        $hoaDons = HoaDon::all();
         $canHos = CanHo::all();
 
-        return view('admin.hoa_don.create', compact('canHos'));
+        return view('admin.hoa_don.create', compact('hoaDons', 'canHos'));
     }
 
 
     public function store(Request $request)
     {
-        $request->validate([
-            'ma_can_ho' => 'required',
-            'thang' => 'required',
-            'nam' => 'required',
-            'tong_tien' => 'required'
-        ]);
-
         HoaDon::create([
             'ma_can_ho' => $request->ma_can_ho,
-            'thang' => $request->thang,
-            'nam' => $request->nam,
             'tong_tien' => $request->tong_tien,
-            'trang_thai' => 'Chưa thanh toán'
+            'han_thanh_toan' => $request->han_thanh_toan,
+            'trang_thai' => 'chua_thanh_toan'
         ]);
 
-        return redirect('/admin/hoa-don')->with('success', 'Tạo hóa đơn thành công');
+        return redirect('/admin/hoa-don')
+                ->with('success', 'Thêm hóa đơn thành công');
     }
 
 
@@ -87,21 +82,23 @@ class HoaDonController extends Controller
         return redirect('/admin/hoa-don')->with('success', 'Xóa thành công');
     }
 
-    public function thanhToan($id)
+    public function thanhToan(Request $request, $id)
     {
         $hoaDon = HoaDon::findOrFail($id);
 
+        // 1. Lưu vào bảng thanh_toan
         ThanhToan::create([
-            'ma_hoa_don' => $id,
+            'ma_hoa_don' => $hoaDon->ma_hoa_don,
             'so_tien' => $hoaDon->tong_tien,
-            'ngay_thanh_toan' => now()
+            'phuong_thuc' => $request->phuong_thuc,
+            'ngay_thanh_toan' => Carbon::now()
         ]);
 
-        $hoaDon->update([
-            'trang_thai' => 'da_thanh_toan'
-        ]);
+        // 2. Update trạng thái hóa đơn
+        $hoaDon->trang_thai = 'da_thanh_toan';
+        $hoaDon->save();
 
-        return back()->with('success','Thanh toán thành công');
+        return back()->with('success', 'Thanh toán thành công');
     }
 
 }
